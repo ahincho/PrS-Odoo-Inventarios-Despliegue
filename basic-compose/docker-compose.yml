@@ -1,0 +1,14 @@
+version: '3.1' # Version de Docker Compose
+services: # Contenedores ha crear
+  web: # Imagen de Odoo v16
+    image: odoo:16.0
+    depends_on:
+      - db # Se necesita la base de datos en Postgres
+    ports: # Puertos de exposicion
+      - "8069:8069"
+  db: # Base de datos en Postgres v15
+    image: postgres:15
+    environment: # Variables de entorno de Postgres
+      - POSTGRES_DB=postgres # Nombre de la base de datos
+      - POSTGRES_PASSWORD=odoo # Contrasenia de la base de datos
+      - POSTGRES_USER=odoo # Nombre del usuario administrador
